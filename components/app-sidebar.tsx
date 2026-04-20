@@ -51,9 +51,21 @@ const data = {
           badge: "GOV",
           status: "green" as const,
           subItems: [
-            { title: "Overview", url: "/projects/p1", icon: IconReportAnalytics },
-            { title: "Calendar (P&L)", url: "/projects/p1/calendar", icon: IconCalendar },
-            { title: "Kanban", url: "/projects/p1/kanban", icon: IconLayoutKanban },
+            {
+              title: "Overview",
+              url: "/projects/p1",
+              icon: IconReportAnalytics,
+            },
+            {
+              title: "Calendar (P&L)",
+              url: "/projects/p1/calendar",
+              icon: IconCalendar,
+            },
+            {
+              title: "Kanban",
+              url: "/projects/p1/kanban",
+              icon: IconLayoutKanban,
+            },
           ],
         },
         {
@@ -62,9 +74,21 @@ const data = {
           badge: "GOV",
           status: "amber" as const,
           subItems: [
-            { title: "Overview", url: "/projects/p2", icon: IconReportAnalytics },
-            { title: "Calendar (P&L)", url: "/projects/p2/calendar", icon: IconCalendar },
-            { title: "Kanban", url: "/projects/p2/kanban", icon: IconLayoutKanban },
+            {
+              title: "Overview",
+              url: "/projects/p2",
+              icon: IconReportAnalytics,
+            },
+            {
+              title: "Calendar (P&L)",
+              url: "/projects/p2/calendar",
+              icon: IconCalendar,
+            },
+            {
+              title: "Kanban",
+              url: "/projects/p2/kanban",
+              icon: IconLayoutKanban,
+            },
           ],
         },
         {
@@ -73,9 +97,21 @@ const data = {
           badge: "START",
           status: "red" as const,
           subItems: [
-            { title: "Overview", url: "/projects/p3", icon: IconReportAnalytics },
-            { title: "Calendar (P&L)", url: "/projects/p3/calendar", icon: IconCalendar },
-            { title: "Kanban", url: "/projects/p3/kanban", icon: IconLayoutKanban },
+            {
+              title: "Overview",
+              url: "/projects/p3",
+              icon: IconReportAnalytics,
+            },
+            {
+              title: "Calendar (P&L)",
+              url: "/projects/p3/calendar",
+              icon: IconCalendar,
+            },
+            {
+              title: "Kanban",
+              url: "/projects/p3/kanban",
+              icon: IconLayoutKanban,
+            },
           ],
         },
         {
@@ -84,31 +120,43 @@ const data = {
           badge: "COM",
           status: "green" as const,
           subItems: [
-            { title: "Overview", url: "/projects/p4", icon: IconReportAnalytics },
-            { title: "Calendar (P&L)", url: "/projects/p4/calendar", icon: IconCalendar },
-            { title: "Kanban", url: "/projects/p4/kanban", icon: IconLayoutKanban },
+            {
+              title: "Overview",
+              url: "/projects/p4",
+              icon: IconReportAnalytics,
+            },
+            {
+              title: "Calendar (P&L)",
+              url: "/projects/p4/calendar",
+              icon: IconCalendar,
+            },
+            {
+              title: "Kanban",
+              url: "/projects/p4/kanban",
+              icon: IconLayoutKanban,
+            },
           ],
         },
       ],
     },
     {
       title: "Reports",
-      url: "/reports",
+      url: "/dashboard",
       icon: IconReport,
     },
     {
       title: "Cost Centers",
-      url: "/cost-centers",
+      url: "/dashboard",
       icon: IconReceipt2,
     },
     {
       title: "Tally Sync",
-      url: "/tally-sync",
+      url: "/dashboard",
       icon: IconRefresh,
     },
     {
       title: "Settings",
-      url: "/settings",
+      url: "/dashboard",
       icon: IconSettings,
     },
   ] as NavItem[],
