@@ -130,11 +130,11 @@ const data = {
               url: "/projects/p4/calendar",
               icon: IconCalendar,
             },
-            {
-              title: "Kanban",
-              url: "/projects/p4/kanban",
-              icon: IconLayoutKanban,
-            },
+            // {
+            //   title: "Kanban",
+            //   url: "/projects/p4/kanban",
+            //   icon: IconLayoutKanban,
+            // },
           ],
         },
       ],
