@@ -140,23 +140,13 @@ const data = {
       ],
     },
     {
-      title: "Reports",
-      url: "/dashboard",
-      icon: IconReport,
-    },
-    {
-      title: "Cost Centers",
-      url: "/dashboard",
-      icon: IconReceipt2,
-    },
-    {
       title: "Tally Sync",
-      url: "/dashboard",
+      url: "/",
       icon: IconRefresh,
     },
     {
       title: "Settings",
-      url: "/dashboard",
+      url: "/",
       icon: IconSettings,
     },
   ] as NavItem[],
@@ -170,10 +160,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton
               asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
+              className="data-[slot=sidebar-menu-button]:p-1.5!"
             >
               <a href="#">
-                <IconInnerShadowTop className="!size-5" />
+                <IconInnerShadowTop className="size-5!" />
                 <span className="text-base font-semibold">
                   IITD Tally Portal
                 </span>
