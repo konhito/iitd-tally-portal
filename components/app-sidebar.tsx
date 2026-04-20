@@ -61,11 +61,11 @@ const data = {
               url: "/projects/p1/calendar",
               icon: IconCalendar,
             },
-            {
-              title: "Kanban",
-              url: "/projects/p1/kanban",
-              icon: IconLayoutKanban,
-            },
+            // {
+            //   title: "Kanban",
+            //   url: "/projects/p1/kanban",
+            //   icon: IconLayoutKanban,
+            // },
           ],
         },
         {
@@ -84,11 +84,11 @@ const data = {
               url: "/projects/p2/calendar",
               icon: IconCalendar,
             },
-            {
-              title: "Kanban",
-              url: "/projects/p2/kanban",
-              icon: IconLayoutKanban,
-            },
+            // {
+            //   title: "Kanban",
+            //   url: "/projects/p2/kanban",
+            //   icon: IconLayoutKanban,
+            // },
           ],
         },
         {
@@ -107,11 +107,11 @@ const data = {
               url: "/projects/p3/calendar",
               icon: IconCalendar,
             },
-            {
-              title: "Kanban",
-              url: "/projects/p3/kanban",
-              icon: IconLayoutKanban,
-            },
+            // {
+            //   title: "Kanban",
+            //   url: "/projects/p3/kanban",
+            //   icon: IconLayoutKanban,
+            // },
           ],
         },
         {
