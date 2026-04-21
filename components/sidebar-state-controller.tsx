@@ -18,7 +18,7 @@ export function SidebarStateController() {
 
     prevPathRef.current = pathname
 
-    if (currBase === "dashboard" || currBase === "projects") {
+    if (["dashboard", "projects", "tally-sync", "settings"].includes(currBase)) {
       setOpen(true)
     } else {
       setOpen(false)

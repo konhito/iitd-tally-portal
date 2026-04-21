@@ -137,12 +137,12 @@ const data = {
     },
     {
       title: "Tally Sync",
-      url: "/",
+      url: "/tally-sync",
       icon: IconRefresh,
     },
     {
       title: "Settings",
-      url: "/",
+      url: "/settings",
       icon: IconSettings,
     },
   ] as NavItem[],

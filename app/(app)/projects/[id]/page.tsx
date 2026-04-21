@@ -141,8 +141,8 @@ export default function ProjectPage() {
             <CardContent className="px-5 pb-5">
               <div className="text-2xl font-bold tracking-tight">
                 <AnimatedNumber value={data.kpi.sanctioned} format={(v) => {
-                  if (v >= 10000000) return `₹${(v/10000000).toFixed(1)}Cr`
-                  if (v >= 100000) return `₹${(v/100000).toFixed(1)}L`
+                  if (v >= 10000000) return `₹${(v / 10000000).toFixed(1)}Cr`
+                  if (v >= 100000) return `₹${(v / 100000).toFixed(1)}L`
                   return `₹${Math.round(v).toLocaleString('en-IN')}`
                 }} />
               </div>
@@ -155,8 +155,8 @@ export default function ProjectPage() {
             <CardContent className="px-5 pb-5">
               <div className="text-2xl font-bold tracking-tight text-green-600">
                 <AnimatedNumber value={data.kpi.received} format={(v) => {
-                  if (v >= 10000000) return `₹${(v/10000000).toFixed(1)}Cr`
-                  if (v >= 100000) return `₹${(v/100000).toFixed(1)}L`
+                  if (v >= 10000000) return `₹${(v / 10000000).toFixed(1)}Cr`
+                  if (v >= 100000) return `₹${(v / 100000).toFixed(1)}L`
                   return `₹${Math.round(v).toLocaleString('en-IN')}`
                 }} />
               </div>
@@ -169,8 +169,8 @@ export default function ProjectPage() {
             <CardContent className="px-5 pb-5">
               <div className="text-2xl font-bold tracking-tight text-red-600">
                 <AnimatedNumber value={data.kpi.expenses} format={(v) => {
-                  if (v >= 10000000) return `₹${(v/10000000).toFixed(1)}Cr`
-                  if (v >= 100000) return `₹${(v/100000).toFixed(1)}L`
+                  if (v >= 10000000) return `₹${(v / 10000000).toFixed(1)}Cr`
+                  if (v >= 100000) return `₹${(v / 100000).toFixed(1)}L`
                   return `₹${Math.round(v).toLocaleString('en-IN')}`
                 }} />
               </div>
@@ -183,8 +183,8 @@ export default function ProjectPage() {
             <CardContent className="px-5 pb-5">
               <div className="text-2xl font-bold tracking-tight">
                 <AnimatedNumber value={data.kpi.surplus} format={(v) => {
-                  if (v >= 10000000) return `₹${(v/10000000).toFixed(1)}Cr`
-                  if (v >= 100000) return `₹${(v/100000).toFixed(1)}L`
+                  if (v >= 10000000) return `₹${(v / 10000000).toFixed(1)}Cr`
+                  if (v >= 100000) return `₹${(v / 100000).toFixed(1)}L`
                   return `₹${Math.round(v).toLocaleString('en-IN')}`
                 }} />
               </div>
@@ -195,10 +195,9 @@ export default function ProjectPage() {
               <CardTitle className="text-xs font-medium text-muted-foreground">Budget Utilisation</CardTitle>
             </CardHeader>
             <CardContent className="px-5 pb-5">
-              <div className={`text-2xl font-bold tracking-tight ${
-                data.kpi.budgetUtil < 70 ? 'text-green-500' :
-                data.kpi.budgetUtil < 85 ? 'text-amber-500' : 'text-red-500'
-              }`}>
+              <div className={`text-2xl font-bold tracking-tight ${data.kpi.budgetUtil < 70 ? 'text-green-500' :
+                  data.kpi.budgetUtil < 85 ? 'text-amber-500' : 'text-red-500'
+                }`}>
                 <AnimatedNumber value={data.kpi.budgetUtil} format={(v) => `${v.toFixed(1)}%`} />
               </div>
             </CardContent>
@@ -229,7 +228,7 @@ export default function ProjectPage() {
           <CostCenterDonutChart data={data.costCenters} />
           <ExpenseTrendChart data={data.expenseTrend} />
           <RatiosPanel data={data.ratios} />
-          {data.type === "GOV" && <ArAgingChart data={data.arAging} />}
+          {/* {data.type === "GOV" && <ArAgingChart data={data.arAging} />} */}
         </div>
       </section>
     </div>
