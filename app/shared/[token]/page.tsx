@@ -2,13 +2,12 @@
 
 import * as React from "react"
 import { useParams } from "next/navigation"
-import { ShieldCheck, ShieldX, ExternalLink } from "lucide-react"
-import { Share, Download, RefreshCw, Eye, EyeOff } from "lucide-react"
+import { ShieldCheck, ShieldX, Download, RefreshCw } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Toggle } from "@/components/ui/toggle"
+
 import { Separator } from "@/components/ui/separator"
 import { verifyShareToken, PROJECT_NAMES } from "@/lib/share-token"
 import { projectData } from "@/app/(app)/projects/[id]/mock-data"
@@ -16,12 +15,8 @@ import {
   MonthlyIncomeExpenseChart,
   CumulativeSpendChart,
   CostCenterDonutChart,
-  MilestoneTracker,
   ExpenseTrendChart,
-  PfmsWaterfallChart,
-  TeamCostChart,
   ArAgingChart,
-  GanttChart,
   RatiosPanel
 } from "@/app/(app)/projects/[id]/components/project-charts"
 
@@ -36,7 +31,6 @@ export default function SharedProjectPage() {
   const tokenStr = Array.isArray(token) ? token[0] : token ?? ""
 
   const verified = React.useMemo(() => verifyShareToken(tokenStr), [tokenStr])
-  const [isExternalView, setIsExternalView] = React.useState(true) // default external on shared view
 
   if (!verified) {
     return (
@@ -85,16 +79,15 @@ export default function SharedProjectPage() {
           <div className="space-y-1">
             <div className="flex items-center gap-3">
               <h2 className="text-3xl font-bold tracking-tight">{data.name}</h2>
-              <Badge variant="secondary" className="text-xs bg-primary/10 text-primary">{data.type}</Badge>
-              <Badge
-                variant={data.status === "On Track" ? "default" : "destructive"}
-                className={data.status === "On Track" ? "bg-green-500 hover:bg-green-600" : ""}
-              >
-                {data.status}
-              </Badge>
             </div>
             <div className="text-sm text-muted-foreground flex items-center gap-2">
               <span>{data.ministry}</span>
+              {data.type === "GOV" && (
+                <>
+                  <Separator orientation="vertical" className="h-4" />
+                  <span className="font-medium text-foreground">{data.pfmsAccount}</span>
+                </>
+              )}
               <Separator orientation="vertical" className="h-4" />
               <span>PI: {data.piName}</span>
               <Separator orientation="vertical" className="h-4" />
@@ -102,15 +95,6 @@ export default function SharedProjectPage() {
             </div>
           </div>
           <div className="flex items-center space-x-2">
-            <Toggle
-              aria-label="Toggle external view"
-              pressed={isExternalView}
-              onPressedChange={setIsExternalView}
-              className="data-[state=on]:bg-amber-100 data-[state=on]:text-amber-900"
-            >
-              {isExternalView ? <EyeOff className="mr-2 h-4 w-4" /> : <Eye className="mr-2 h-4 w-4" />}
-              {isExternalView ? "External View" : "Internal View"}
-            </Toggle>
             <Button variant="outline" size="sm" onClick={handlePrint}>
               <Download className="mr-2 h-4 w-4" /> Export PDF
             </Button>
@@ -149,20 +133,9 @@ export default function SharedProjectPage() {
           <MonthlyIncomeExpenseChart data={data.monthlyIncomeExpense} />
           <CumulativeSpendChart data={data.cumulativeSpend} />
           <CostCenterDonutChart data={data.costCenters} />
-          <MilestoneTracker data={data.milestones} />
           <ExpenseTrendChart data={data.expenseTrend} />
-          {data.type === "GOV" && <PfmsWaterfallChart data={data.pfmsWaterfall} />}
-          {/* Internal charts hidden in shared/external view */}
-          {!isExternalView && (
-            <>
-              <TeamCostChart data={data.teamCost} />
-              <RatiosPanel data={data.ratios} />
-            </>
-          )}
+          <RatiosPanel data={data.ratios} />
           {data.type === "GOV" && <ArAgingChart data={data.arAging} />}
-          <div className="col-span-1 lg:col-span-4">
-            <GanttChart data={data.timeline} />
-          </div>
         </div>
       </main>
     </div>

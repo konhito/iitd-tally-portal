@@ -332,7 +332,7 @@ function useCountUpRaw(target: number, duration = 700) {
     }
     rafRef.current = requestAnimationFrame(step)
     return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current) }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [target])
 
   return val
@@ -600,7 +600,7 @@ export function CeoDashboard() {
       </div>
 
       {/* GRADIENT BAR CHART — Monthly Revenue Trend */}
-      <GradientBarChart />
+      {/* <GradientBarChart /> */}
 
       {/* EXPENSE KPI ROW — Quarterly Expense, Trend, Top Groups */}
       <ExpenseKpiRow />

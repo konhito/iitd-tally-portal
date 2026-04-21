@@ -15,15 +15,15 @@ export default function Page() {
             <CeoDashboard />
           </div>
           {/* Interactive Area Chart */}
-          <div className="px-4 lg:px-6">
+          {/* <div className="px-4 lg:px-6">
             <ChartAreaInteractive />
-          </div>
+          </div> */}
           {/* Project Activity Overview */}
-          <div className="px-4 lg:px-6">
+          {/* <div className="px-4 lg:px-6">
             <MarketingDashboardDemo />
-          </div>
+          </div> */}
           {/* Data Table */}
-          <DataTable data={data} />
+          {/* <DataTable data={data} /> */}
         </div>
       </div>
     </div>

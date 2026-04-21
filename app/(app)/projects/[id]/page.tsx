@@ -1,13 +1,13 @@
 "use client"
 
 import * as React from "react"
-import { useParams, useRouter } from "next/navigation"
-import { Share, Download, RefreshCw, EyeOff, Eye, Copy, CheckCheck, Link2 } from "lucide-react"
+import { useParams } from "next/navigation"
+import { Share, Download, RefreshCw, Copy, CheckCheck, Link2 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Toggle } from "@/components/ui/toggle"
+
 import { Separator } from "@/components/ui/separator"
 import {
   Popover,
@@ -19,12 +19,8 @@ import {
   MonthlyIncomeExpenseChart,
   CumulativeSpendChart,
   CostCenterDonutChart,
-  MilestoneTracker,
   ExpenseTrendChart,
-  PfmsWaterfallChart,
-  TeamCostChart,
   ArAgingChart,
-  GanttChart,
   RatiosPanel
 } from "./components/project-charts"
 import { generateShareToken, PROJECT_NAMES } from "@/lib/share-token"
@@ -92,7 +88,6 @@ function SharePopover({ projectId }: { projectId: string }) {
 export default function ProjectPage() {
   const params = useParams()
   const id = Array.isArray(params.id) ? params.id[0] : params.id ?? ""
-  const [isExternalView, setIsExternalView] = React.useState(false)
 
   const data = projectData
 
@@ -105,10 +100,6 @@ export default function ProjectPage() {
         <div className="space-y-2">
           <div className="flex items-center gap-3 flex-wrap">
             <h2 className="text-3xl font-bold tracking-tight">{data.name}</h2>
-            <Badge variant="secondary" className="text-xs bg-primary/10 text-primary">{data.type}</Badge>
-            <Badge variant={data.status === "On Track" ? "default" : "destructive"} className={data.status === "On Track" ? "bg-green-500 hover:bg-green-600" : ""}>
-              {data.status}
-            </Badge>
           </div>
           <div className="text-sm text-muted-foreground flex items-center gap-2 flex-wrap">
             <span>{data.ministry}</span>
@@ -126,15 +117,6 @@ export default function ProjectPage() {
         </div>
 
         <div className="flex items-center gap-2 flex-wrap">
-          <Toggle
-            aria-label="Toggle external view"
-            pressed={isExternalView}
-            onPressedChange={setIsExternalView}
-            className="data-[state=on]:bg-amber-100 data-[state=on]:text-amber-900"
-          >
-            {isExternalView ? <EyeOff className="mr-2 h-4 w-4" /> : <Eye className="mr-2 h-4 w-4" />}
-            {isExternalView ? "External View" : "Internal View"}
-          </Toggle>
           <SharePopover projectId={id} />
           <Button variant="outline" size="sm" onClick={handlePrint}>
             <Download className="mr-2 h-4 w-4" /> Export PDF
@@ -245,17 +227,9 @@ export default function ProjectPage() {
           <MonthlyIncomeExpenseChart data={data.monthlyIncomeExpense} />
           <CumulativeSpendChart data={data.cumulativeSpend} />
           <CostCenterDonutChart data={data.costCenters} />
-          <MilestoneTracker data={data.milestones} />
           <ExpenseTrendChart data={data.expenseTrend} />
-          {data.type === "GOV" && <PfmsWaterfallChart data={data.pfmsWaterfall} />}
-          {!isExternalView && (
-            <>
-              <TeamCostChart data={data.teamCost} />
-              <RatiosPanel data={data.ratios} />
-            </>
-          )}
+          <RatiosPanel data={data.ratios} />
           {data.type === "GOV" && <ArAgingChart data={data.arAging} />}
-          <GanttChart data={data.timeline} />
         </div>
       </section>
     </div>

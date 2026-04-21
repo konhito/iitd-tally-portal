@@ -48,7 +48,6 @@ const data = {
         {
           title: "AI Automation System",
           url: "/projects/p1",
-          badge: "GOV",
           status: "green" as const,
           subItems: [
             {
@@ -71,7 +70,6 @@ const data = {
         {
           title: "Smart City Infrastructure",
           url: "/projects/p2",
-          badge: "GOV",
           status: "amber" as const,
           subItems: [
             {
@@ -94,7 +92,6 @@ const data = {
         {
           title: "Fintech Platform MVP",
           url: "/projects/p3",
-          badge: "START",
           status: "red" as const,
           subItems: [
             {
@@ -117,7 +114,6 @@ const data = {
         {
           title: "Healthcare Analytics App",
           url: "/projects/p4",
-          badge: "COM",
           status: "green" as const,
           subItems: [
             {
