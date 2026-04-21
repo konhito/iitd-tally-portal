@@ -55,11 +55,11 @@ const data = {
               url: "/projects/p1",
               icon: IconReportAnalytics,
             },
-            {
-              title: "Calendar (P&L)",
-              url: "/projects/p1/calendar",
-              icon: IconCalendar,
-            },
+            // {
+            //   title: "Calendar (P&L)",
+            //   url: "/projects/p1/calendar",
+            //   icon: IconCalendar,
+            // },
             // {
             //   title: "Kanban",
             //   url: "/projects/p1/kanban",
@@ -77,11 +77,11 @@ const data = {
               url: "/projects/p2",
               icon: IconReportAnalytics,
             },
-            {
-              title: "Calendar (P&L)",
-              url: "/projects/p2/calendar",
-              icon: IconCalendar,
-            },
+            // {
+            //   title: "Calendar (P&L)",
+            //   url: "/projects/p2/calendar",
+            //   icon: IconCalendar,
+            // },
             // {
             //   title: "Kanban",
             //   url: "/projects/p2/kanban",
@@ -99,11 +99,11 @@ const data = {
               url: "/projects/p3",
               icon: IconReportAnalytics,
             },
-            {
-              title: "Calendar (P&L)",
-              url: "/projects/p3/calendar",
-              icon: IconCalendar,
-            },
+            // {
+            //   title: "Calendar (P&L)",
+            //   url: "/projects/p3/calendar",
+            //   icon: IconCalendar,
+            // },
             // {
             //   title: "Kanban",
             //   url: "/projects/p3/kanban",
@@ -121,11 +121,11 @@ const data = {
               url: "/projects/p4",
               icon: IconReportAnalytics,
             },
-            {
-              title: "Calendar (P&L)",
-              url: "/projects/p4/calendar",
-              icon: IconCalendar,
-            },
+            // {
+            //   title: "Calendar (P&L)",
+            //   url: "/projects/p4/calendar",
+            //   icon: IconCalendar,
+            // },
             // {
             //   title: "Kanban",
             //   url: "/projects/p4/kanban",
