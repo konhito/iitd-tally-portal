@@ -9,7 +9,7 @@ import {
   YAxis,
   ResponsiveContainer,
 } from "recharts"
-import { IconInfoCircle, IconTrendingUp, IconTrendingDown } from "@tabler/icons-react"
+import { IconInfoCircle, IconTrendingUp, IconTrendingDown, IconArrowsSort, IconSortAscending, IconSortDescending } from "@tabler/icons-react"
 import {
   Card,
   CardAction,
@@ -108,6 +108,50 @@ const expenseData = {
     { month: "Jan", current: 20, prev: 22 },
     { month: "Feb", current: 15, prev: 10 },
     { month: "Mar", current: 25, prev: 28 },
+  ],
+}
+
+// ─── PROJECT REVENUE DATA ────────────────────────────────────────────────────
+
+type ProjectRevenue = {
+  id: string
+  name: string
+  revenue: number
+  prevRevenue: number
+  change: number
+  color: string
+}
+
+const PROJECT_REVENUE_BY_PRESET: Record<DatePreset, ProjectRevenue[]> = {
+  "FY: April to March": [
+    { id: "p1", name: "AI Automation System",      revenue: 128000000, prevRevenue: 112000000, change: 14.29, color: "#10b981" },
+    { id: "p2", name: "Smart City Infrastructure", revenue:  95000000, prevRevenue: 103000000, change: -7.77, color: "#3b82f6" },
+    { id: "p3", name: "Fintech Platform MVP",       revenue:  62000000, prevRevenue:  58000000, change:  6.90, color: "#f59e0b" },
+    { id: "p4", name: "Healthcare Analytics App",   revenue:  55000000, prevRevenue:  66000000, change:-16.67, color: "#8b5cf6" },
+  ],
+  "Last 3 months": [
+    { id: "p1", name: "AI Automation System",      revenue:  38000000, prevRevenue:  33000000, change: 15.15, color: "#10b981" },
+    { id: "p2", name: "Smart City Infrastructure", revenue:  28000000, prevRevenue:  30000000, change: -6.67, color: "#3b82f6" },
+    { id: "p3", name: "Fintech Platform MVP",       revenue:  18500000, prevRevenue:  16000000, change: 15.63, color: "#f59e0b" },
+    { id: "p4", name: "Healthcare Analytics App",   revenue:  11500000, prevRevenue:   8000000, change: 43.75, color: "#8b5cf6" },
+  ],
+  "Last 30 days": [
+    { id: "p1", name: "AI Automation System",      revenue:  12800000, prevRevenue:  11000000, change: 16.36, color: "#10b981" },
+    { id: "p2", name: "Smart City Infrastructure", revenue:   9200000, prevRevenue:  10200000, change: -9.80, color: "#3b82f6" },
+    { id: "p3", name: "Fintech Platform MVP",       revenue:   5900000, prevRevenue:   5400000, change:  9.26, color: "#f59e0b" },
+    { id: "p4", name: "Healthcare Analytics App",   revenue:   4100000, prevRevenue:   2400000, change: 70.83, color: "#8b5cf6" },
+  ],
+  "Last 7 days": [
+    { id: "p1", name: "AI Automation System",      revenue:   3200000, prevRevenue:   2800000, change: 14.29, color: "#10b981" },
+    { id: "p2", name: "Smart City Infrastructure", revenue:   2300000, prevRevenue:   2600000, change:-11.54, color: "#3b82f6" },
+    { id: "p3", name: "Fintech Platform MVP",       revenue:   1600000, prevRevenue:   1400000, change: 14.29, color: "#f59e0b" },
+    { id: "p4", name: "Healthcare Analytics App",   revenue:   1100000, prevRevenue:    600000, change: 83.33, color: "#8b5cf6" },
+  ],
+  "Custom": [
+    { id: "p1", name: "AI Automation System",      revenue:  21000000, prevRevenue:  18500000, change: 13.51, color: "#10b981" },
+    { id: "p2", name: "Smart City Infrastructure", revenue:  15500000, prevRevenue:  17000000, change: -8.82, color: "#3b82f6" },
+    { id: "p3", name: "Fintech Platform MVP",       revenue:   9200000, prevRevenue:   8100000, change: 13.58, color: "#f59e0b" },
+    { id: "p4", name: "Healthcare Analytics App",   revenue:   6300000, prevRevenue:   4400000, change: 43.18, color: "#8b5cf6" },
   ],
 }
 
@@ -338,6 +382,107 @@ function useCountUpRaw(target: number, duration = 700) {
   return val
 }
 
+// ─── PROJECT REVENUE BREAKDOWN CARD ─────────────────────────────────────────
+
+type SortOrder = "desc" | "asc"
+
+function ProjectRevenueCard({ projects }: { projects: ProjectRevenue[] }) {
+  const [sort, setSort] = React.useState<SortOrder>("desc")
+
+  const total = projects.reduce((s, p) => s + p.revenue, 0)
+
+  const sorted = React.useMemo(() => {
+    return [...projects].sort((a, b) =>
+      sort === "desc" ? b.revenue - a.revenue : a.revenue - b.revenue
+    )
+  }, [projects, sort])
+
+  const toggleSort = () => setSort(s => s === "desc" ? "asc" : "desc")
+
+  return (
+    <Card className="@container/card">
+      <CardHeader>
+        <CardTitle className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          Revenue by Project
+        </CardTitle>
+        <CardAction>
+          <button
+            onClick={toggleSort}
+            className="flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors rounded px-2 py-1 hover:bg-muted"
+            title={sort === "desc" ? "Sorted: High → Low" : "Sorted: Low → High"}
+          >
+            {sort === "desc" ? (
+              <><IconSortDescending className="size-3.5" /> High → Low</>
+            ) : (
+              <><IconSortAscending className="size-3.5" /> Low → High</>
+            )}
+          </button>
+        </CardAction>
+      </CardHeader>
+      <CardContent>
+        {/* Project rows */}
+        <div className="space-y-3">
+          {sorted.map((p, i) => {
+            const pct = (p.revenue / total) * 100
+            return (
+              <div key={p.id} className="group">
+                <div className="flex items-center justify-between mb-1.5">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span
+                      className="inline-block size-2.5 rounded-full flex-shrink-0"
+                      style={{ background: p.color }}
+                    />
+                    <a
+                      href={`/projects/${p.id}`}
+                      className="text-sm font-medium truncate hover:underline decoration-dotted underline-offset-2"
+                    >
+                      {p.name}
+                    </a>
+                    {i === 0 && sort === "desc" && (
+                      <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 flex-shrink-0">
+                        #1
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-3 flex-shrink-0 ml-3">
+                    <span className="text-sm font-bold">{formatRupee(p.revenue)}</span>
+                    <span className="text-xs text-muted-foreground w-10 text-right">{pct.toFixed(1)}%</span>
+                    <div className={cn(
+                      "flex items-center gap-0.5 text-xs font-semibold w-16 justify-end",
+                      p.change < 0 ? "text-red-500" : "text-emerald-600"
+                    )}>
+                      {p.change < 0
+                        ? <IconTrendingDown className="size-3.5" />
+                        : <IconTrendingUp className="size-3.5" />
+                      }
+                      {p.change > 0 ? "+" : ""}{p.change.toFixed(1)}%
+                    </div>
+                  </div>
+                </div>
+                {/* Bar */}
+                <div className="h-1.5 w-full bg-muted rounded-full overflow-hidden">
+                  <div
+                    className="h-full rounded-full transition-all duration-700"
+                    style={{ width: `${pct}%`, background: p.color, opacity: 0.85 }}
+                  />
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Footer totals */}
+        <div className="mt-4 pt-3 border-t flex items-center justify-between text-xs text-muted-foreground">
+          <span>{projects.length} projects</span>
+          <span>
+            Total: <strong className="text-foreground">{formatRupee(total)}</strong>
+          </span>
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
+
 // ─── MAIN CEO DASHBOARD ──────────────────────────────────────────────────────
 
 export function CeoDashboard() {
@@ -498,6 +643,9 @@ export function CeoDashboard() {
           </CardContent>
         </Card>
       </div>
+
+      {/* PROJECT REVENUE BREAKDOWN */}
+      <ProjectRevenueCard projects={PROJECT_REVENUE_BY_PRESET[activePreset] ?? PROJECT_REVENUE_BY_PRESET["FY: April to March"]} />
 
       {/* BOTTOM ROW — 2 chart cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
